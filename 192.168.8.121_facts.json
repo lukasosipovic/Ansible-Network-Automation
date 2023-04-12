@@ -1,0 +1,120 @@
+{
+    "ansible_facts": {
+        "ansible_net_all_ipv4_addresses": [
+            "192.168.8.121",
+            "10.20.30.133",
+            "3.3.3.3"
+        ],
+        "ansible_net_all_ipv6_addresses": [],
+        "ansible_net_api": "cliconf",
+        "ansible_net_config": "Building configuration...\n\nCurrent configuration : 1733 bytes\n!\n! Last configuration change at 09:19:19 UTC Mon Mar 27 2023\n!\nversion 16.4\nservice timestamps debug datetime msec\nservice timestamps log datetime msec\nno platform punt-keepalive disable-kernel-core\nplatform console serial\n!\nhostname R1\n!\nboot-start-marker\nboot-end-marker\n!\n!\n!\naaa new-model\n!\n!\naaa authentication login default local\naaa authorization exec default local \n!\n!\n!\n!\n!\naaa session-id common\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\n\n\nip domain name cisco.com\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\nsubscriber templating\n!\n!\n!\nmultilink bundle-name authenticated\n!\n!\n!\n!\n!\n!\n\n\n!\n!\n!\n!\n!\n!\n!\nlicense udi pid CSR1000V sn 9MQ5LBJGT2O\ndiagnostic bootup level minimal\n!\nspanning-tree extend system-id\n!\n!\nusername cisco privilege 15 secret 5 $1$yrkc$IGV1.BTkh9s9Vbqfcnlsw1\n!\nredundancy\n!\n!\n!\n!\n!\n!\n! \n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n! \n! \n! \n! \n! \n! \n!\n!\ninterface Loopback3\n ip address 3.3.3.3 255.255.255.255\n!\ninterface GigabitEthernet1\n ip address dhcp\n negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet2\n no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet3\n description OOB connection for Management\n ip address 10.20.30.133 255.255.255.0\n negotiation auto\n no mop enabled\n no mop sysid\n!\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation auto\n no mop enabled\n no mop sysid\n!\nrouter ospf 1\n router-id 3.3.3.3\n network 10.20.30.0 0.0.0.255 area 0\n!\n!\nvirtual-service csr_mgmt\n!\nip forward-protocol nd\nip http server\nip http authentication local\nip http secure-server\n!\nip ssh version 2\n!\n!\n!\n!\n!\n!\n!\n!\ncontrol-plane\n!\n !\n !\n !\n !\n!\n!\n!\n!\n!\nline con 0\n stopbits 1\nline vty 0 4\n transport input ssh\nline vty 5 15\n transport input ssh\n!\nntp server time-pnp.cisco.com\n!\n!\n!\n!\n!\nend",
+        "ansible_net_filesystems": [
+            "bootflash:"
+        ],
+        "ansible_net_filesystems_info": {
+            "bootflash:": {
+                "spacefree_kb": 6367612.0,
+                "spacetotal_kb": 7712692.0
+            }
+        },
+        "ansible_net_gather_network_resources": [],
+        "ansible_net_gather_subset": [
+            "config",
+            "interfaces",
+            "hardware",
+            "default"
+        ],
+        "ansible_net_hostname": "R1",
+        "ansible_net_image": "bootflash:packages.conf",
+        "ansible_net_interfaces": {
+            "GigabitEthernet1": {
+                "bandwidth": 1000000,
+                "description": null,
+                "duplex": "Full",
+                "ipv4": [
+                    {
+                        "address": "192.168.8.121",
+                        "subnet": "24"
+                    }
+                ],
+                "lineprotocol": "up",
+                "macaddress": "5001.0006.0000",
+                "mediatype": "RJ45",
+                "mtu": 1500,
+                "operstatus": "up",
+                "type": "CSR vNIC"
+            },
+            "GigabitEthernet2": {
+                "bandwidth": 1000000,
+                "description": null,
+                "duplex": "Full",
+                "ipv4": [],
+                "lineprotocol": "down",
+                "macaddress": "5001.0006.0001",
+                "mediatype": "RJ45",
+                "mtu": 1500,
+                "operstatus": "administratively down",
+                "type": "CSR vNIC"
+            },
+            "GigabitEthernet3": {
+                "bandwidth": 1000000,
+                "description": "OOB connection for Management",
+                "duplex": "Full",
+                "ipv4": [
+                    {
+                        "address": "10.20.30.133",
+                        "subnet": "24"
+                    }
+                ],
+                "lineprotocol": "down",
+                "macaddress": "5001.0006.0002",
+                "mediatype": "RJ45",
+                "mtu": 1500,
+                "operstatus": "down",
+                "type": "CSR vNIC"
+            },
+            "GigabitEthernet4": {
+                "bandwidth": 1000000,
+                "description": null,
+                "duplex": "Full",
+                "ipv4": [],
+                "lineprotocol": "down",
+                "macaddress": "5001.0006.0003",
+                "mediatype": "RJ45",
+                "mtu": 1500,
+                "operstatus": "administratively down",
+                "type": "CSR vNIC"
+            },
+            "Loopback3": {
+                "bandwidth": 8000000,
+                "description": null,
+                "duplex": null,
+                "ipv4": [
+                    {
+                        "address": "3.3.3.3",
+                        "subnet": "32"
+                    }
+                ],
+                "lineprotocol": "up",
+                "macaddress": null,
+                "mediatype": null,
+                "mtu": 1514,
+                "operstatus": "up",
+                "type": null
+            }
+        },
+        "ansible_net_iostype": "IOS-XE",
+        "ansible_net_memfree_mb": 1702299.3515625,
+        "ansible_net_memtotal_mb": 2052243.21875,
+        "ansible_net_model": "CSR1000V",
+        "ansible_net_neighbors": {},
+        "ansible_net_operatingmode": "controller",
+        "ansible_net_python_version": "3.9.13",
+        "ansible_net_serialnum": "9MQ5LBJGT2O",
+        "ansible_net_system": "ios",
+        "ansible_net_version": "16.04.01",
+        "ansible_network_resources": {}
+    },
+    "changed": false,
+    "failed": false
+}

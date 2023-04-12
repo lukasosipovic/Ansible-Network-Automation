@@ -1,0 +1,19 @@
+---
+- name: "Parsed Data"
+  hosts: R1
+  connection: network_cli
+
+  tasks:
+    - name: "Send Command"
+      cisco.ios.ios_command:
+        commands: "show arp vrf MGT"
+      register: show_version_output
+    
+    - name: "Parse Show Command"
+      set_fact:
+        parsed_data: >-
+          {{ show_version_output.stdout[0] | clay584.genie.parse_genie(command='show arp vrf MGT', os='ios') }}
+
+    - name: " Print Output "
+      debug:
+        msg: "{{ parsed_data }}"

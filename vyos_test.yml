@@ -1,0 +1,12 @@
+---
+
+- name: "VYOS Configuration"
+  hosts: 192.168.8.119
+  connection: network_cli
+
+  tasks:
+    - name: "Configure Banner"
+      vyos.vyos.vyos_banner:
+        banner: "pre-login"
+        state: "present"
+        text: "This is PRELOGIN ANSIBLE BANNER"

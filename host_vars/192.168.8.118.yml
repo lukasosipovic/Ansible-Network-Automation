@@ -1,0 +1,14 @@
+---
+
+ospf:
+  rid: "3.3.3.3"
+  networks:
+    - address: "10.2.3.0/24"
+      area: "0"
+
+bgp:
+  asn: "3"
+  rid: "3.3.3.3"
+  neighbors:
+    - "10.3.4.4"
+    - "10.2.3.2"

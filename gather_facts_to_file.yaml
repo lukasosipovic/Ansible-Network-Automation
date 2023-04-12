@@ -1,0 +1,16 @@
+---
+- name: Playbook2
+  hosts: csr
+  connection: network_cli
+  gather_facts: false
+
+  tasks:
+    - name: Gather FACTS
+      cisco_ios.ios_facts:
+        gather_subset: all
+      register: ios_facts_result
+
+    - name: Copy files
+      copy:
+        content: "{{ ios_facts_result | to_nice_json }}"
+        dest: "{{inventory_hostname}}_facts.json"

@@ -1,0 +1,21 @@
+---
+
+- name: "MY BANNER PAYBOOK"
+  hosts: top
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: "CONFIGURE BOTD"
+      cisco.ios.ios_banner:
+        banner: motd
+        text: |
+          THIS IS MY BANNER
+          FOR ALL OF MY DEV
+          ICES IN THE NET F
+          OR ONLY R3
+        state: present
+
+      register: my_banner
+
+    - debug: var=my_banner

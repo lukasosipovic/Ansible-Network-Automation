@@ -1,0 +1,10 @@
+router bgp {{ bgp.asn }}
+ bgp router-id {{ bgp.rid }}
+{% for neigh in bgp.neighbors %}
+ neighbor {{ neigh.address }} remote-as {{ neigh.peer_asn }}
+{% endfor %}
+{% if bgp.networks is defined %}
+{% for ntwrk in bgp.networks %}
+ network {{ ntwrk.address }} mask {{ ntwrk.mask }}
+{% endfor%}
+{% endif %}

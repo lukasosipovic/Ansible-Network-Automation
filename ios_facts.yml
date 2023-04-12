@@ -1,0 +1,19 @@
+---
+
+- name: "IOS Facts"
+  hosts: "R1"
+  connection: network_cli
+
+  tasks:
+
+    - name: "Gather IP"
+      cisco.ios.ios_facts:
+      register: iosfacts_out
+        
+    - debug:
+            var: iosfacts_out
+        
+    
+
+
+      

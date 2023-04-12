@@ -1,0 +1,30 @@
+---
+
+- name: "MultiVendor OSPF"
+  hosts: all
+  connection: network_cli
+
+  tasks:
+
+    - name: "Configure IOS OSPF"
+      cisco.ios.ios_config:
+        src: "{{ansible_network_os}}-ospf.j2"
+      register: ios_output
+      when: "ansible_network_os == 'cisco.ios.ios'"
+
+    - name: "Print IOS Output"
+      debug:
+        msg: "{{ ios_output }}"
+      when: "ansible_network_os == 'cisco.ios.ios'"
+
+
+    - name: "Configure VyOS OSPF"
+      vyos.vyos.vyos_config:
+        src: "{{ansible_network_os}}-ospf.j2"
+      register: vyos_output
+      when: "ansible_network_os == 'vyos.vyos.vyos'"
+
+    - name: "Print VyOS Output"
+      debug:
+        msg: "{{ vyos_output }}"
+      when: "ansible_network_os == 'vyos.vyos.vyos'"

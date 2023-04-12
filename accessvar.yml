@@ -1,0 +1,10 @@
+---
+
+- name: "Print variable information"
+  gather_facts: false
+  hosts: R1
+
+  tasks:
+    - name: "Parse variable information"
+      debug:
+        msg: "OSPF has these networks {{hostvars[ansible_host].ospf.networks.0}}"

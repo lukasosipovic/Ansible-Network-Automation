@@ -1,0 +1,23 @@
+---
+
+- name: "Looping over IP information"
+  hosts: "R1_2"
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+
+    - name: "Gather IP"
+      cisco.ios.ios_facts:
+        gather_subset: min
+        gather_network_resources: l3_interfaces
+
+      register: iosfacts_out
+        
+    - debug:
+            var: iosfacts_out
+        
+    
+
+
+      

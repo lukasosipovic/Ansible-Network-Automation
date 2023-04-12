@@ -1,0 +1,20 @@
+---
+
+- name: "Test Conditional"
+  hosts: R1_2
+  connection: network_cli
+  gather_facts: true
+
+  tasks:
+  - name: Gather L3 interfaces
+    cisco.ios.ios_facts:
+      gather_subset: interfaces
+  - debug:
+      msg: " Interface {{ item['key'] }} has an IP address of {{ item['value']['ipv4'][0]['address'] }}"
+    loop: "{{ ansible_facts.net_interfaces | dict2items }}"
+    when: item['value']['lineprotocol'] == 'up'
+
+
+ 
+
+

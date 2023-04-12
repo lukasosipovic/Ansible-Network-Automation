@@ -1,0 +1,15 @@
+---
+
+- name: "Configure L0"
+  hosts: R1_2
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: "Config L0"
+      cisco.ios.ios_config:
+        commands:
+          - description configured with ANSIBLE
+          - ip address {{ loopback.address }} {{ loopback.subnet }}
+        parents: interface Loopback0
+

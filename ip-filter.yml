@@ -1,0 +1,16 @@
+---
+
+- name: "IP FILTER TEST"
+  hosts: R1
+
+  tasks:
+    - name: "FILTERING"
+      vars:
+        my_ip:
+          - "10.0.0.1/24"
+          - "1.1.1.1"
+          - "222.1.1.1"
+          - "333.3.3.3"
+      debug:
+        msg: "{{ my_ip | ipaddr('network')}}"
+        

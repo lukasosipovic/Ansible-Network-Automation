@@ -1,0 +1,9 @@
+---
+
+- name: "VLAN CONFIGS via Jinja"
+  hosts: "192.168.8.126"
+  connection: network_cli
+
+  tasks:
+  - name: " Configure VLANs"
+    template: src={{ansible_network_os}}-vlan.j2 dest=s1.conf

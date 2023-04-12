@@ -1,0 +1,37 @@
+---
+
+- name: "Update Hostname"
+  hosts: R1
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: "Find Hostname Before"
+      cisco.ios.ios_facts:
+        gather_subset: all
+
+    - name: "Display Hostname Before"
+      debug:
+        msg: "Router's hostname is {{ansible_net_hostname}} and OS version is {{ansible_net_version}}"
+    
+    - name: "Change Hostname"
+      cisco.ios.ios_config:
+        config:
+          lines:
+          - hostname Router1
+      register: toutput
+
+    - name: debug
+      debug:
+        msg: toutput
+
+    - name: "Get Changed Configuration"
+      cisco.ios.ios_facts:
+        gather_subset: all
+
+    - name: "Display Chnaged Hostname"
+      debug:
+        msg: "Router's NEW hostname is {{ansible_net_hostname}} and OS version is {{ansible_net_version}}"
+
+
+

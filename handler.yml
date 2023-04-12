@@ -1,0 +1,24 @@
+---
+
+- name: "Register NTP Configuration"
+  hosts: R1
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: "Configure NTP and print"
+      cisco.ios.ios_config:
+        src: ntp.j2
+      notify: ntp_handler
+      register: ntp_out
+
+  handlers:
+    - name: "Printing Out Changes"
+      listen: ntp_handler
+      debug:
+        msg: "{{ ntp_out }}"
+
+    
+        
+
+    

@@ -1,0 +1,23 @@
+---
+
+- name: "Gather local host facts"
+  hosts: localhost
+  connection: network_cli
+
+  tasks:
+    - name: "TASK 1: Gathering Facts"
+      ansible.builtin.setup:
+        filter:
+          - "ansible_date_time"
+
+    - name: "TASK 2: Recording a Variable"
+      set_fact:
+        TD: "{{ ansible_date_time.date }}"
+    
+    - name: "TASK 3: Creating a Varialbe"
+      ansible.builtin.file:
+        path: "Backups/{{ TD }}"
+        state: "directory"
+      run_once: true
+
+

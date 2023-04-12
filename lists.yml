@@ -1,0 +1,10 @@
+---
+
+- gather_facts: false
+  hosts: R1
+  tasks:
+    - name: List RM
+      ansible.builtin.include_role:
+        name: resource_manager
+      vars:
+        action: list

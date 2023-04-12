@@ -1,0 +1,20 @@
+---
+
+- name: "EIGRP CONFIG"
+  hosts: R1
+  gather_facts: false
+  connection: network_cli
+
+  roles:
+    - role_eigrp
+
+  tasks:
+    - name: "Additional VERIFICATION"
+      cisco.ios.ios_command:
+        commands:
+          - "show ip eigrp interface"
+      register: add_output
+
+    - name: "Show ADD VERIFICATION"
+      debug:
+        msg: "{{ add_output }}"

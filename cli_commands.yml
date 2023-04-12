@@ -1,0 +1,29 @@
+---
+- name: Show examples
+  hosts: csr
+  connection: network_cli
+  gather_facts: false
+
+  tasks:
+  - name: GATHERING FACTS
+    ios_facts:
+      gather_subset: hardware
+
+  - name: Run show version
+    ios_command:
+      commands: show version
+    register: version
+
+  - name: display version
+    debug:
+      var: version["stdout_lines"][0]
+      
+  - name: Run show ip int brief
+    ios_command:
+      commands: show ip interface brief
+    register: interfaces
+
+
+  - name: display interfaces
+    debug:
+      var: interfaces["stdout_lines"][0]

@@ -1,0 +1,22 @@
+vlans:
+  vlan:
+   - name: "FIVE"
+     number: "5"
+     svi: "192.168.5.2 255.255.255.0"
+
+   - name: "TEN"
+     number: "10"
+     svi: "192.168.10.2 255.255.255.0"
+  
+  interfaces:
+    - name: "Gi0/1"
+      mode: "access"
+      vlan: "5"
+
+    - name: "Gi0/2"
+      mode: "access"
+      vlan: "10"
+
+    - name: "Gi0/0"
+      mode: "trunk"
+

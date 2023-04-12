@@ -1,0 +1,29 @@
+---
+
+- name: "Pul MultiVendor Information"
+  hosts: all
+  connection: network_cli
+
+  tasks:
+    - name: "Pull Cisco Information"
+      cisco.ios.ios_facts:
+        gather_subset: config
+      register: ios_facts
+      when: "ansible_network_os == 'cisco.ios.ios'"
+
+    - name: "Pull VyOS Information"
+      vyos.vyos.vyos_facts:
+        gather_subset: config
+      register: vyos_facts
+      when: "ansible_network_os == 'vyos.vyos.vyos'"
+
+    - name: "PRINT IOS Output"
+      debug:
+        msg: "{{ios_facts.ansible_facts.ansible_net_config.split('\n')}}"
+      when: "ansible_network_os == 'cisco.ios.ios'"
+
+
+    - name: "Print VyOS Output"
+      debug:
+        msg: "{{vyos_facts.ansible_facts.ansible_net_config[0].split('\n')}}"
+      when: "ansible_network_os == 'vyos.vyos.vyos'"

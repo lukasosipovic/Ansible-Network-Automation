@@ -1,0 +1,10 @@
+---
+
+- name: "Print variable information"
+  gather_facts: false
+  hosts: R1_2
+
+  tasks:
+    - name: "Displaying variable information"
+      debug:
+        msg: "{{ eigrp_style }}"

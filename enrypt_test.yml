@@ -1,0 +1,11 @@
+---
+
+- name: "ENCRYPT"
+  hosts: encrypt_R1
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: "PRINT"
+      debug:
+        msg: "{{ super_secret_bgp }}"
